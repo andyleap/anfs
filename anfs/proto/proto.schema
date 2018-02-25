@@ -1,0 +1,23 @@
+struct Attr {
+	Mode uint32
+	UID uint32
+	GID uint32	
+}
+
+struct Directory {
+	Attr Attr
+	Items []Item
+}
+
+struct File {
+	Attr Attr
+	Len vuint64
+	BlockSize vuint64
+	SparseMap []byte
+}
+
+struct Item {
+	Name string
+	Type vuint16
+	Inode vuint64
+}

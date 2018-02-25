@@ -1,0 +1,69 @@
+struct ReadReq {
+	Key []byte
+}
+
+struct ReadResp {
+	Error string
+	Data []byte
+}
+
+struct WriteReq {
+	Key []byte
+	Data []byte
+}
+
+struct WriteResp {
+	Error string
+}
+
+struct DeleteReq {
+	Key []byte
+}
+
+struct DeleteResp {
+	Error string
+}
+
+struct ClearReq {
+}
+
+struct ClearResp {
+}
+
+struct CheckReq {
+	Key []byte
+}
+
+struct CheckResp {
+	Found bool
+}
+
+struct SweepReq {
+}
+
+struct SweepResp {
+}
+
+struct Req framed {
+	ID vuint64
+	Request union Request {
+		ReadReq
+		WriteReq
+		DeleteReq
+		ClearReq
+		CheckReq
+		SweepReq
+	}
+}
+
+struct Resp framed {
+	ID vuint64
+	Response union Response {
+		ReadResp
+		WriteResp
+		DeleteResp
+		ClearResp
+		CheckResp
+		SweepResp
+	}
+}
